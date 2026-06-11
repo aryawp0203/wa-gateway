@@ -74,3 +74,15 @@ Syaratnya:
 2. endpoint /send-message harus memang ada di index.js
 
 ---
+Langkah 6: Best Practice untuk Production (Menyala 24 Jam)
+
+Jika Anda menggunakan perintah node index.js, server akan mati saat Anda menutup terminal. Untuk production (baik di lokal maupun VPS), gunakan PM2 sebagai Process Manager agar aplikasi tetap berjalan di latar belakang dan auto-restart jika terjadi crash.
+
+1. Install PM2 secara global:
+    npm install -g pm2
+2. Jalankan aplikasi menggunakan PM2:
+    pm2 start index.js --name "wa-gateway"
+3. Untuk melihat log aplikasi (termasuk memunculkan QR jika sewaktu-waktu ter-logout):
+    pm2 log wa-gateway
+
+---
