@@ -1,0 +1,34 @@
+# 1. Buat folder untuk project gateway
+mkdir wa-gateway
+cd wa-gateway
+
+# 2. Inisialisasi project Node.js
+npm init -y
+
+Wrote to C:\laragon\www\wa-gateway\package.json:
+
+{
+  "name": "wa-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+---
+Langkah 2: Install Dependencies
+Kita membutuhkan tiga library utama:
+
+express: Untuk membuat API server (menerima request dari Laravel).
+
+whatsapp-web.js: Core engine untuk WhatsApp.
+
+qrcode-terminal: Untuk memunculkan QR Code di terminal saat login pertama kali.
+
+Jalankan perintah ini:
+npm install express whatsapp-web.js qrcode-terminal
