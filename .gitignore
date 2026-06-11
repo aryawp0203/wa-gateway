@@ -15,3 +15,5 @@ build/
 .cache/
 .vscode/
 .idea/
+.wwebjs_auth/
+.wwebjs_cache/

@@ -32,3 +32,21 @@ qrcode-terminal: Untuk memunculkan QR Code di terminal saat login pertama kali.
 
 Jalankan perintah ini:
 npm install express whatsapp-web.js qrcode-terminal
+
+---
+Langkah 3: Buat Script Utama (index.js)
+Buat file baru bernama index.js di dalam folder wa-gateway tersebut, lalu copy-paste kode berikut. Kode ini sudah dilengkapi dengan sistem LocalAuth agar Anda tidak perlu scan QR code berulang kali jika server di-restart.
+
+---
+Langkah 4: Menjalankan Server & Scan QR
+Di terminal Anda, jalankan perintah:
+
+Bash
+node index.js
+Tunggu beberapa detik. Terminal akan memunculkan gambar QR Code.
+
+Buka aplikasi WhatsApp di HP (gunakan nomor khusus yang akan dijadikan bot pengirim notifikasi), pilih Perangkat Tertaut (Linked Devices), lalu scan QR code di terminal tersebut.
+
+Jika berhasil, terminal akan menampilkan tulisan: "WhatsApp Gateway sudah siap dan terhubung!".
+
+Mulai titik ini, server Node.js Anda siap menerima request dari aplikasi Laravel Anda.
