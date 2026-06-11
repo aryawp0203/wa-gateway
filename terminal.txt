@@ -50,3 +50,27 @@ Buka aplikasi WhatsApp di HP (gunakan nomor khusus yang akan dijadikan bot pengi
 Jika berhasil, terminal akan menampilkan tulisan: "WhatsApp Gateway sudah siap dan terhubung!".
 
 Mulai titik ini, server Node.js Anda siap menerima request dari aplikasi Laravel Anda.
+
+---
+Langkah 5: Cara Menguji API (Testing)
+Sebelum menghubungkannya ke Laravel, Anda bisa mengujinya menggunakan Postman, Insomnia, atau terminal cURL.
+
+Contoh request menggunakan cURL
+Di Windows PowerShell, pakai curl.exe, bukan curl, karena curl sering dianggap alias bawaan PowerShell.
+
+Jalankan seperti ini di terminal:
+curl.exe -X POST http://localhost:3000/send-message `
+  -H "Content-Type: application/json" `
+  -d '{"number":"085647647074","message":"Halo, ini pesan percobaan dari Node.js Gateway"}'
+
+Kalau mau satu baris:
+curl.exe -X POST http://localhost:3000/send-message -H "Content-Type: application/json" -d '{"number":"085647647074","message":"Halo, ini pesan percobaan dari Node.js Gateway"}'
+
+Kalau ternyata kamu pakai Command Prompt, formatnya ini:
+curl -X POST http://localhost:3000/send-message -H "Content-Type: application/json" -d "{\"number\":\"085647647074\",\"message\":\"Halo, ini pesan percobaan dari Node.js Gateway\"}"
+
+Syaratnya:
+1. server Node.js harus sudah jalan di http://localhost:3000
+2. endpoint /send-message harus memang ada di index.js
+
+---
