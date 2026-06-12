@@ -5,6 +5,8 @@ const qrcode = require('qrcode-terminal');
 const app = express();
 app.use(express.json()); // Untuk membaca body JSON dari Laravel
 
+let isClientReady = false;
+
 // Inisialisasi Client WhatsApp dengan fitur simpan sesi lokal
 const client = new Client({
     authStrategy: new LocalAuth(),
@@ -22,12 +24,19 @@ client.on('qr', (qr) => {
 
 // Event: WhatsApp berhasil terkoneksi
 client.on('ready', () => {
+    isClientReady = true;
     console.log('WhatsApp Gateway sudah siap dan terhubung!');
 });
 
 // Event: Jika autentikasi gagal
 client.on('auth_failure', msg => {
+    isClientReady = false;
     console.error('Autentikasi gagal:', msg);
+});
+
+client.on('disconnected', () => {
+    isClientReady = false;
+    console.warn('WhatsApp Gateway terputus.');
 });
 
 // Jalankan client WhatsApp
@@ -41,6 +50,13 @@ app.post('/send-message', async (req, res) => {
 
     if (!number || !message) {
         return res.status(400).json({ status: 'error', message: 'Nomor dan pesan wajib diisi!' });
+    }
+
+    if (!isClientReady) {
+        return res.status(503).json({
+            status: 'error',
+            message: 'WhatsApp Gateway belum siap. Tunggu sampai client terhubung lalu coba lagi.',
+        });
     }
 
     // Format nomor WA dari '0812...' atau '62812...' menjadi format wa.me (misal: 62812xxx@c.us)
